@@ -8,8 +8,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "customer")
 public class Customer {
-    @Id
-    @Column(name = "customer_id")
+    @Id // Tells hibernate that this is the primary key of this entity
+    @Column(name = "customer_id") // defines how the column name should be generated in database
     private int id;
     @Column(name = "customer_name")
     private String name;

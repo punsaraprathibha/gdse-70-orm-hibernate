@@ -8,14 +8,33 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+/**
+ * This is the session factory configuration class
+ */
 public class SessionFactoryConfig {
     private static SessionFactoryConfig factoryConfig;
+
+    /**
+     * Defines default constructor as private
+     * to avoid object creation of this class from outside
+     */
     private SessionFactoryConfig(){}
+
+    /**
+     * @return lk.ijse.gdse.orm.hibernate.config.SessionFactoryConfig
+     * Singleton the class to avoid object re-creation
+     */
     public static SessionFactoryConfig getInstance() {
         return (null == factoryConfig)
                 ? factoryConfig = new SessionFactoryConfig()
                 : factoryConfig;
     }
+
+    /**
+     * @return org.hibernate.Session
+     * Returns Hibernate session whenever this method is called
+     * by following the steps of Native Bootstrapping
+     */
     public Session getSession() {
         // Step 1 - Create Service Registry
         StandardServiceRegistry serviceRegistry =
@@ -30,7 +49,9 @@ public class SessionFactoryConfig {
                 .build();
 
         // Step 3 - Create SessionFactory Object
-        return metadata
-                .buildSessionFactory().openSession();
+        SessionFactory sessionFactory = metadata
+                .buildSessionFactory();
+
+        return sessionFactory.openSession();
     }
 }

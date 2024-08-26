@@ -5,20 +5,28 @@ import lk.ijse.gdse.orm.hibernate.entity.Customer;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+/**
+ * This is the Main class of this Hibernate Application
+ */
 public class Main {
+
+    /**
+     * @param args : java.lang.String[]
+     * Main method of this Application
+     */
     public static void main(String[] args) {
         Customer customer = new Customer();
         customer.setId(1);
         customer.setName("Kamal");
         customer.setAddress("Galle");
         customer.setSalary(25000.00);
+
+        // Save New Customer in DB
         Session session = SessionFactoryConfig
-                .getInstance()
-                .getSession();
-        Transaction transaction = session
-                .beginTransaction();
+                .getInstance().getSession(); // Request new Session from Factory
+        Transaction transaction = session.beginTransaction(); // Start Transaction
         session.save(customer);
-        transaction.commit();
-        session.close();
+        transaction.commit(); // Commit Transaction
+        session.close(); // Close the Session
     }
 }
