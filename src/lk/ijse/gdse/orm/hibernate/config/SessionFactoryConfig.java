@@ -7,6 +7,7 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 /**
  * This is the session factory configuration class
@@ -20,14 +21,9 @@ public class SessionFactoryConfig {
      * to avoid object creation of this class from outside
      */
     private SessionFactoryConfig(){
-        // Step 3 - Create SessionFactory Object
-        sessionFactory = new MetadataSources(
-                new StandardServiceRegistryBuilder()
+        sessionFactory = new Configuration()
                 .configure()
-                .build())
                 .addAnnotatedClass(Customer.class)
-                .getMetadataBuilder()
-                .build()
                 .buildSessionFactory();
     }
 
