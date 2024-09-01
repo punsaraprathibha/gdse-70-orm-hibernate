@@ -20,20 +20,14 @@ public class SessionFactoryConfig {
      * to avoid object creation of this class from outside
      */
     private SessionFactoryConfig(){
-        // Step 1 - Create Service Registry
-        StandardServiceRegistry serviceRegistry =
+        // Step 3 - Create SessionFactory Object
+        sessionFactory = new MetadataSources(
                 new StandardServiceRegistryBuilder()
-                        .configure()
-                        .build();
-
-        // Step 2 - Create Metadata Object
-        Metadata metadata = new MetadataSources(serviceRegistry)
+                .configure()
+                .build())
                 .addAnnotatedClass(Customer.class)
                 .getMetadataBuilder()
-                .build();
-
-        // Step 3 - Create SessionFactory Object
-        sessionFactory = metadata
+                .build()
                 .buildSessionFactory();
     }
 
