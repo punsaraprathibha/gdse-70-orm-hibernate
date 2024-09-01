@@ -16,10 +16,11 @@ public class Main {
      */
     public static void main(String[] args) {
         Customer customer = new Customer();
-        customer.setId(1);
+//        customer.setId(2); // Now it's not mandatory to set value to id
         customer.setName("Kamal");
         customer.setAddress("Galle");
         customer.setSalary(25000.00);
+        customer.setAge(20);
 
         // 1. Save New Customer in DB
         Session session = SessionFactoryConfig
