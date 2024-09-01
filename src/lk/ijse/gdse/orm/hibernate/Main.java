@@ -16,17 +16,53 @@ public class Main {
      */
     public static void main(String[] args) {
         Customer customer = new Customer();
-        customer.setId(1);
+//        customer.setId(2); // Now it's not mandatory to set value to id
         customer.setName("Kamal");
         customer.setAddress("Galle");
         customer.setSalary(25000.00);
+        customer.setAge(20);
 
-        // Save New Customer in DB
+        // 1. Save New Customer in DB
         Session session = SessionFactoryConfig
                 .getInstance().getSession(); // Request new Session from Factory
         Transaction transaction = session.beginTransaction(); // Start Transaction
         session.save(customer);
         transaction.commit(); // Commit Transaction
         session.close(); // Close the Session
+
+        // 2. Update existing customer in DB
+        Session updateCusSession = SessionFactoryConfig
+                .getInstance()
+                .getSession();
+        Transaction updateCusTransaction = updateCusSession
+                .beginTransaction();
+        customer.setName("Nimal");
+        customer.setAddress("Mathara");
+        customer.setSalary(50000);
+
+        updateCusSession.update(customer);
+
+        updateCusTransaction.commit();
+        updateCusSession.close();
+
+        // 3. Get Existing Customer from DB
+        Session getCusSession = SessionFactoryConfig
+                .getInstance()
+                .getSession();
+        Customer existingCustomer = getCusSession
+                .get(Customer.class, 1);
+        System.out.println(existingCustomer);
+
+        // 4. Delete existing customer from DB
+        Session deleteCusSession = SessionFactoryConfig
+                .getInstance()
+                .getSession();
+        Transaction deleteCusTransaction = deleteCusSession
+                .beginTransaction();
+
+        deleteCusSession.delete(existingCustomer);
+
+        deleteCusTransaction.commit();
+        deleteCusSession.close();
     }
 }
