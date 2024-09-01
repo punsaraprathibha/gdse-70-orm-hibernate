@@ -22,11 +22,26 @@ public class Main {
         customer.setSalary(25000.00);
 
         // Save New Customer in DB
-        Session session = SessionFactoryConfig
-                .getInstance().getSession(); // Request new Session from Factory
-        Transaction transaction = session.beginTransaction(); // Start Transaction
-        session.save(customer);
-        transaction.commit(); // Commit Transaction
-        session.close(); // Close the Session
+//        Session session = SessionFactoryConfig
+//                .getInstance().getSession(); // Request new Session from Factory
+//        Transaction transaction = session.beginTransaction(); // Start Transaction
+//        session.save(customer);
+//        transaction.commit(); // Commit Transaction
+//        session.close(); // Close the Session
+
+        // Update existing customer in DB
+        Session updateCusSession = SessionFactoryConfig
+                .getInstance()
+                .getSession();
+        Transaction updateCusTransaction = updateCusSession
+                .beginTransaction();
+        customer.setName("Nimal");
+        customer.setAddress("Mathara");
+        customer.setSalary(50000);
+
+        updateCusSession.update(customer);
+
+        updateCusTransaction.commit();
+        updateCusSession.close();
     }
 }

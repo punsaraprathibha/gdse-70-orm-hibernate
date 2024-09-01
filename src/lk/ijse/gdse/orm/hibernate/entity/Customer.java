@@ -4,9 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-@Entity
-@Table(name = "customer")
+// 1 -> @Entity(name = "customer")
+// 2 -> @Entity
+//      @Table(name = "customer")
+@Entity(name = "customer")
+//@Table(name = "customer")
 public class Customer {
     @Id // Tells hibernate that this is the primary key of this entity
     @Column(name = "customer_id") // defines how the column name should be generated in database
