@@ -36,7 +36,6 @@ public class SessionFactoryConfig {
     /**
      * @return org.hibernate.Session
      * Returns Hibernate session whenever this method is called
-     * by following the steps of Native Bootstrapping
      */
     public Session getSession() {
         return sessionFactory.openSession();
