@@ -13,12 +13,29 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
  */
 public class SessionFactoryConfig {
     private static SessionFactoryConfig factoryConfig;
+    private final SessionFactory sessionFactory;
 
     /**
      * Defines default constructor as private
      * to avoid object creation of this class from outside
      */
-    private SessionFactoryConfig(){}
+    private SessionFactoryConfig(){
+        // Step 1 - Create Service Registry
+        StandardServiceRegistry serviceRegistry =
+                new StandardServiceRegistryBuilder()
+                        .configure()
+                        .build();
+
+        // Step 2 - Create Metadata Object
+        Metadata metadata = new MetadataSources(serviceRegistry)
+                .addAnnotatedClass(Customer.class)
+                .getMetadataBuilder()
+                .build();
+
+        // Step 3 - Create SessionFactory Object
+        sessionFactory = metadata
+                .buildSessionFactory();
+    }
 
     /**
      * @return lk.ijse.gdse.orm.hibernate.config.SessionFactoryConfig
@@ -36,22 +53,6 @@ public class SessionFactoryConfig {
      * by following the steps of Native Bootstrapping
      */
     public Session getSession() {
-        // Step 1 - Create Service Registry
-        StandardServiceRegistry serviceRegistry =
-                new StandardServiceRegistryBuilder()
-                .configure()
-                .build();
-
-        // Step 2 - Create Metadata Object
-        Metadata metadata = new MetadataSources(serviceRegistry)
-                .addAnnotatedClass(Customer.class)
-                .getMetadataBuilder()
-                .build();
-
-        // Step 3 - Create SessionFactory Object
-        SessionFactory sessionFactory = metadata
-                .buildSessionFactory();
-
         return sessionFactory.openSession();
     }
 }

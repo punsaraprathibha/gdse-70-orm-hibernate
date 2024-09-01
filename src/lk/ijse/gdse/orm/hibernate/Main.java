@@ -22,12 +22,12 @@ public class Main {
         customer.setSalary(25000.00);
 
         // 1. Save New Customer in DB
-//        Session session = SessionFactoryConfig
-//                .getInstance().getSession(); // Request new Session from Factory
-//        Transaction transaction = session.beginTransaction(); // Start Transaction
-//        session.save(customer);
-//        transaction.commit(); // Commit Transaction
-//        session.close(); // Close the Session
+        Session session = SessionFactoryConfig
+                .getInstance().getSession(); // Request new Session from Factory
+        Transaction transaction = session.beginTransaction(); // Start Transaction
+        session.save(customer);
+        transaction.commit(); // Commit Transaction
+        session.close(); // Close the Session
 
         // 2. Update existing customer in DB
         Session updateCusSession = SessionFactoryConfig
