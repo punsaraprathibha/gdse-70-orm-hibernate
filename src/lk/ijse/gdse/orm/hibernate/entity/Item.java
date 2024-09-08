@@ -20,7 +20,15 @@ public class Item {
     @Column(name = "unit_price")
     private double unitPrice;
 
-    @ManyToMany(mappedBy = "items")
-    private List<Order> orders
+//    @ManyToMany(cascade = CascadeType.ALL,
+//                fetch = FetchType.LAZY,
+//                mappedBy = "items")
+//    private List<Order> orders
+//            = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL,
+               fetch = FetchType.LAZY,
+               mappedBy = "item")
+    private List<OrderDetail> orderDetails
             = new ArrayList<>();
 }
