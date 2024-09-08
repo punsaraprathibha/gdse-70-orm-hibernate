@@ -21,33 +21,6 @@ public class Main {
      */
     public static void main(String[] args) {
         Customer customer = new Customer();
-//        customer.setId(2); // Now it's not mandatory to set value to id
-//        customer.setName("Kamal");
-
-        NameIdentifier name = new NameIdentifier();
-        name.setFirstName("Kamal");
-        name.setMiddleName("De");
-        name.setLastName("Silva");
-
-        customer.setNameIdentifier(name);
-        customer.setAddress("Galle");
-        customer.setSalary(25000.00);
-        customer.setAge(20);
-
-        List<MobileNo> mobileNos = new ArrayList<>();
-
-        MobileNo homeNo = new MobileNo();
-        homeNo.setType("HOME");
-        homeNo.setMobileNo("0913245467");
-
-        MobileNo mobileNo = new MobileNo();
-        mobileNo.setType("MOBILE");
-        mobileNo.setMobileNo("07134564656");
-
-        mobileNos.add(homeNo);
-        mobileNos.add(mobileNo);
-
-        customer.setPhoneNos(mobileNos);
 
         // 1. Save New Customer in DB
         Session session = SessionFactoryConfig
@@ -57,39 +30,39 @@ public class Main {
         transaction.commit(); // Commit Transaction
         session.close(); // Close the Session
 
-        // 2. Update existing customer in DB
-        Session updateCusSession = SessionFactoryConfig
-                .getInstance()
-                .getSession();
-        Transaction updateCusTransaction = updateCusSession
-                .beginTransaction();
-//        customer.setName("Nimal");
-        customer.setAddress("Mathara");
-        customer.setSalary(50000);
-
-        updateCusSession.update(customer);
-
-        updateCusTransaction.commit();
-        updateCusSession.close();
-
-        // 3. Get Existing Customer from DB
-        Session getCusSession = SessionFactoryConfig
-                .getInstance()
-                .getSession();
-        Customer existingCustomer = getCusSession
-                .get(Customer.class, 1);
-        System.out.println(existingCustomer);
-
-        // 4. Delete existing customer from DB
-//        Session deleteCusSession = SessionFactoryConfig
+//        // 2. Update existing customer in DB
+//        Session updateCusSession = SessionFactoryConfig
 //                .getInstance()
 //                .getSession();
-//        Transaction deleteCusTransaction = deleteCusSession
+//        Transaction updateCusTransaction = updateCusSession
 //                .beginTransaction();
+////        customer.setName("Nimal");
+//        customer.setAddress("Mathara");
+//        customer.setSalary(50000);
 //
-//        deleteCusSession.delete(existingCustomer);
+//        updateCusSession.update(customer);
 //
-//        deleteCusTransaction.commit();
-//        deleteCusSession.close();
+//        updateCusTransaction.commit();
+//        updateCusSession.close();
+//
+//        // 3. Get Existing Customer from DB
+//        Session getCusSession = SessionFactoryConfig
+//                .getInstance()
+//                .getSession();
+//        Customer existingCustomer = getCusSession
+//                .get(Customer.class, 1);
+//        System.out.println(existingCustomer);
+//
+//        // 4. Delete existing customer from DB
+////        Session deleteCusSession = SessionFactoryConfig
+////                .getInstance()
+////                .getSession();
+////        Transaction deleteCusTransaction = deleteCusSession
+////                .beginTransaction();
+////
+////        deleteCusSession.delete(existingCustomer);
+////
+////        deleteCusTransaction.commit();
+////        deleteCusSession.close();
     }
 }
