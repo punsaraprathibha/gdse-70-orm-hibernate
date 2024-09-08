@@ -40,8 +40,14 @@ public class Main {
         homeNo.setType("HOME");
         homeNo.setMobileNo("0913245467");
 
+        MobileNo mobileNo = new MobileNo();
+        mobileNo.setType("MOBILE");
+        mobileNo.setMobileNo("07134564656");
 
-        customer.setPhoneNos();
+        mobileNos.add(homeNo);
+        mobileNos.add(mobileNo);
+
+        customer.setPhoneNos(mobileNos);
 
         // 1. Save New Customer in DB
         Session session = SessionFactoryConfig
