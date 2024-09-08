@@ -21,6 +21,8 @@ public class Main {
      */
     public static void main(String[] args) {
         Customer customer = new Customer();
+        customer.setName("Kamal");
+        customer.setAddress("Galle");
 
         // 1. Save New Customer in DB
         Session session = SessionFactoryConfig
