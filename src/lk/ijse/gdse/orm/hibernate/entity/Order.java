@@ -85,7 +85,7 @@ public class Order {
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", orderDateTime=" + orderDateTime +
-                ", customer=" + customer +
+//                ", customer=" + customer +
                 '}';
     }
 }
